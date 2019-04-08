@@ -1,0 +1,35 @@
+---
+allow_duplicates: true
+dependencies:
+  - role: lborguetti.system-update
+    when: update_packages
+    tags: prepare
+  - role: geerlingguy.repo-epel
+    when: enable_epel
+    tags: prepare
+
+galaxy_info:
+  author: onegreyonewhite
+  description: Package management for Debian/Ubuntu/Centos.
+  company: "onegreyonewhite"
+  license: "license (BSD)"
+  min_ansible_version: 2.5
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - bionic
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+    - name: EL
+      versions:
+        - 5
+        - 6
+        - 7
+  categories:
+    - web
+    - linux
+    - packaging
