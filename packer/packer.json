@@ -1,7 +1,8 @@
 {
     "variables": {
         "gcloud_account_json": "../credentials.json",
-        "gcloud_project_id"  : "{{env `GCLOUD_PROJECT_ID`}}"
+        "gcloud_project_id"  : "{{env `GCLOUD_PROJECT_ID`}}",
+        "family_name"       : "wordpress-on-lamp-img"
     },
     "builders": [
         {
@@ -10,6 +11,7 @@
             "project_id"  : "{{user `gcloud_project_id`}}",
             "ssh_username": "ubuntu",
             "source_image_family": "ubuntu-1604-tls",
+            "image_family": "{{user `family_name`}}",
             "image_name": "wordpress-lamp-{{timestamp}}",
             "zone": "us-west1-b",
             "machine_type": "n1-standard-1",
