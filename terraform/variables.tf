@@ -4,3 +4,4 @@ variable "credentials" {}
 variable "name" {}
 variable "subnet_cidr" {}
 variable "zone" {}
+variable "machine_type" {}
