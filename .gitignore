@@ -10,3 +10,5 @@
 
 #service account key
 credentials.json
+
+.env
