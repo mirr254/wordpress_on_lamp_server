@@ -1,6 +1,7 @@
 //we create 2 subnets for our vpc
+
 resource "google_compute_subnetwork" "public_subnet" {
-    name          = "${var.name}-private-subnet"
+    name     = "${var.name}-public-subnet"
     ip_cidr_range = "${var.public_subnet_cidr}"
     network       = "${var.name}-vpc"
     depends_on    = ["google_compute_network.vpc"]

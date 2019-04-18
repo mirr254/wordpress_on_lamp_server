@@ -1,3 +1,9 @@
+//reserve static ip
+resource "google_compute_address" "static-ip" {
+    name = "${var.name}-static-ip"
+    region = "${var.region}"
+}
+
 resource "google_compute_instance" "lamp_instance" {
     name         = "${var.name}-word-lamp-instance"
     machine_type = "${var.machine_type}"
@@ -9,20 +15,13 @@ resource "google_compute_instance" "lamp_instance" {
         }
     }
 
-    metadata {
-        startup-script = <<SCRIPT
-        apt-get -y update
-        apt-get -y install nginx
-        export HOSTNAME=$(hostname | tr -d '\n)
-        export PRIVATE_IP=$(curl -sf -H 'Metadata-Flavor:Google' http://metadata/computeMetadata/v1/instance/network-interfaces/0/ip | tr -d '\n')
-        echo "Elcome to $HOSTNAME - $PRIVATE_IP" >
-        
-        SCRIPT
-    }
-
     network_interface {
         network    ="${google_compute_network.vpc.name}"
-        subnetwork = "${google_compute_subnetwork.subnet.name}"
+        subnetwork = "${google_compute_subnetwork.public_subnet.name}"
+        
+        access_config {
+            nat_ip = "${google_compute_address.static-ip.address}"
+        }
     }
 
 }
