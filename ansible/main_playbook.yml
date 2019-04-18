@@ -1,3 +1,12 @@
-- hosts: servers
+- hosts: all
+  become: yes
+  remote_user: root
+  gather_facts: False
+#   install pre-install python2 to avoid python not being found error
+  pre_tasks:
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (sudo apt-get -y update && sudo apt-get install -y python)
+      changed_when: False
+    - setup: # aka gather_facts
   roles:
       - { role: onegreyonewhite.wordpress_lamp_server }

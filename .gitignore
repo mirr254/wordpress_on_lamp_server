@@ -10,5 +10,6 @@
 
 #service account key
 credentials.json
+credentials-shammir.json
 
 .env

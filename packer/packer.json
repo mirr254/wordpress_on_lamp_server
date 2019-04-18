@@ -1,8 +1,7 @@
 {
     "variables": {
-        "gcloud_account_json": "../credentials.json",
-        "gcloud_project_id"  : "{{env `GCLOUD_PROJECT_ID`}}",
-        "family_name"       : "wordpress-on-lamp-img"
+        "gcloud_account_json": "./credentials-shammir.json",
+        "gcloud_project_id"  : "{{env `GCLOUD_PROJECT_ID`}}"
     },
     "builders": [
         {
@@ -10,19 +9,20 @@
             "account_file": "{{user `gcloud_account_json`}}",
             "project_id"  : "{{user `gcloud_project_id`}}",
             "ssh_username": "ubuntu",
-            "source_image_family": "ubuntu-1604-tls",
-            "image_family": "{{user `family_name`}}",
+            "source_image_family": "ubuntu-1804-lts",
+            "region": "us-west1",
             "image_name": "wordpress-lamp-{{timestamp}}",
             "zone": "us-west1-b",
             "machine_type": "n1-standard-1",
             "disk_size" : "20",
+            "disk_type": "pd-ssd",
             "on_host_maintenance" : "TERMINATE"
         }
     ],
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "../ansible/main_playbook.yml"
+            "playbook_file": "./ansible/main_playbook.yml"
 
         }
     ]
