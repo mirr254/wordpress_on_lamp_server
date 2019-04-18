@@ -10,6 +10,7 @@
             "project_id"  : "{{user `gcloud_project_id`}}",
             "ssh_username": "ubuntu",
             "source_image_family": "ubuntu-1804-lts",
+            "image_family": "wordpress-on-lamp-img",
             "region": "us-west1",
             "image_name": "wordpress-lamp-{{timestamp}}",
             "zone": "us-west1-b",
