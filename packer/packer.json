@@ -1,6 +1,6 @@
 {
     "variables": {
-        "gcloud_account_json": "./credentials-shammir.json",
+        "gcloud_account_json": "../credentials-shammir.json",
         "gcloud_project_id"  : "{{env `GCLOUD_PROJECT_ID`}}"
     },
     "builders": [
@@ -23,7 +23,7 @@
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "./ansible/main_playbook.yml"
+            "playbook_file": "../ansible/main_playbook.yml"
 
         }
     ]
